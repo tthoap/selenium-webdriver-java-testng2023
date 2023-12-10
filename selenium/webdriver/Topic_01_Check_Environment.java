@@ -14,7 +14,7 @@ public class Topic_01_Check_Environment {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
-//test commit
+
 	@BeforeClass
 	public void beforeClass() {
 		if (osName.contains("Windows")) {
@@ -31,7 +31,6 @@ public class Topic_01_Check_Environment {
 
 	@Test
 	public void TC_01_Url() {
-		
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.facebook.com/");
 	}
 
