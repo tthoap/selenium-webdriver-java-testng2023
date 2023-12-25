@@ -128,7 +128,7 @@ public class Topic04_Xpath_Css {
 		driver.findElement(By.xpath("//button[@class='btn_pink_sm fs16']")).click();
 		Thread.sleep(1000);
 		Assert.assertEquals(driver.findElement(By.xpath("//label[@id='txtPhone-error']")).getText(),
-				"Số điện thoại phải từ 10-11 số.");
+				"Số điện thoại phải từ 10-11 số."); 
 
 	}
 
