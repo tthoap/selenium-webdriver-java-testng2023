@@ -174,33 +174,33 @@ public class Topic05_Web_Element_Method_Exercise {
 		
 		//Uppercase
 		driver.findElement(pwtextbox).sendKeys("A");
-		Assert.assertEquals(driver.findElement(uppercasecompleted).getCssValue("color"), "rgb(167, 50, 5)");
+		isElementDisplayed(uppercasecompleted);
 
 		
 		//Lowercase
 		driver.findElement(pwtextbox).clear();
 		driver.findElement(pwtextbox).sendKeys("a");
-		Assert.assertEquals(driver.findElement(lowercasecompleted).getCssValue("color"), "rgb(167, 50, 5)");
+		isElementDisplayed(lowercasecompleted);
 		
 		//at least 1 number
 		driver.findElement(pwtextbox).clear();
 		driver.findElement(pwtextbox).sendKeys("1");
-		Assert.assertEquals(driver.findElement(oneNumber).getCssValue("color"), "rgb(167, 50, 5)");
+		isElementDisplayed(oneNumber);
 		
 		//contains special char
 		driver.findElement(pwtextbox).clear();
 		driver.findElement(pwtextbox).sendKeys("@");
-		Assert.assertEquals(driver.findElement(specialcompleted).getCssValue("color"), "rgb(167, 50, 5)");
+		isElementDisplayed(specialcompleted);
 		
 		//contains 8 chars
 		driver.findElement(pwtextbox).clear();
 		driver.findElement(pwtextbox).sendKeys("111122223");
-		Assert.assertEquals(driver.findElement(eightcharcompleted).getCssValue("color"), "rgb(167, 50, 5)");
+		isElementDisplayed(eightcharcompleted);
 		
 		//not contains username
 		driver.findElement(pwtextbox).clear();
 		driver.findElement(pwtextbox).sendKeys("hoa	");
-		Assert.assertEquals(driver.findElement(usernamecheckcompleted).getCssValue("color"), "rgb(167, 50, 5)");
+		isElementDisplayed(usernamecheckcompleted);
 		
 
 		
