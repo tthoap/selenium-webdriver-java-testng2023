@@ -1,10 +1,14 @@
 package webdriver;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -18,6 +22,7 @@ public class Topic_07_Default_dropdown {
 	String osName = System.getProperty("os.name");
 	Select select;
 	String email, firstName, lastName, companyName, day, month, year;
+	List<String> expectedItemtext;
 
 //edit
 	@BeforeClass
@@ -38,10 +43,11 @@ public class Topic_07_Default_dropdown {
 		day = "10";
 		month = "June";
 		year = "1990";
+		expectedItemtext = new ArrayList<String>(Arrays.asList("Month", "January", "February", "March", "April","May", "June", "July", "August", "September", "October", "November", "December"));
 
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Nopcommerce() {
 		driver.get("https://demo.nopcommerce.com/");
 
@@ -95,6 +101,21 @@ public class Topic_07_Default_dropdown {
 
 	@Test
 	public void TC_02_() {
+		driver.get("https://demo.nopcommerce.com/");
+		driver.findElement(By.className("ico-register")).click();
+		
+		select = new Select(driver.findElement(By.name("DateOfBirthMonth")));
+		List<WebElement> allItems = select.getOptions();
+		List<String> allItemText = new ArrayList<String>();
+		
+		//Duyet qua tat ca item dang co trong list element
+		for(WebElement item : allItems) {
+			System.out.println(item.getText());
+			allItemText.add(item.getText());
+		
+		}
+		Assert.assertEquals(expectedItemtext, allItemText);
+
 	}
 
 	@Test
