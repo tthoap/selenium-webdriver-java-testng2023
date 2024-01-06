@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic05_Web_Browser_Method {
+public class Topic_05_Web_Browser_Method {
 	//Interface
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");

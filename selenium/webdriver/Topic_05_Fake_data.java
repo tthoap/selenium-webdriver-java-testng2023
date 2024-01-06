@@ -2,7 +2,7 @@ package webdriver;
 
 import java.util.Random;
 
-public class Topic05_Fake_data {
+public class Topic_05_Fake_data {
 
 	public static void main(String[] args) {
 		Random rand = new Random();

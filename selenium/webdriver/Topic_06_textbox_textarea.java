@@ -12,7 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic06_textbox_textarea {
+public class Topic_06_textbox_textarea {
 	WebDriver driver;
 
 	String projectPath = System.getProperty("user.dir");
