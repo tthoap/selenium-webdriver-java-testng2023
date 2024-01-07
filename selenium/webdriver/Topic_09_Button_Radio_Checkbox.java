@@ -1,11 +1,15 @@
 package webdriver;
 
+import static org.testng.Assert.assertTrue;
+
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.Color;
 import org.testng.Assert;
@@ -34,7 +38,7 @@ public class Topic_09_Button_Radio_Checkbox {
 		
 	}
 
-	//@Test
+	@Test
 	public void TC_01_Button() {
 		driver.get("https://www.fahasa.com/customer/account/create");
 		By loginButton = By.cssSelector("button.fhs-btn-login");
@@ -77,7 +81,7 @@ public class Topic_09_Button_Radio_Checkbox {
 		
 	}
 
-	//@Test
+	@Test
 	public void TC_02_Radio_default() {
 		driver.get("https://demos.telerik.com/kendo-ui/radiobutton/index");
 		By petrolTwo = By.xpath("//label[text()='1.8 Petrol, 118kW']/preceding-sibling::input");
@@ -108,7 +112,7 @@ public class Topic_09_Button_Radio_Checkbox {
 		
 		checkToCheckbox(Rearside);
 		sleepInSecond(2);
-
+		
 		uncheckToCheckbox(Rearside);
 		sleepInSecond(2);
 		
@@ -118,9 +122,81 @@ public class Topic_09_Button_Radio_Checkbox {
 		uncheckToCheckbox(luggage);
 		sleepInSecond(2);
 		Assert.assertFalse(driver.findElement(luggage).isSelected());
-
+		
 	}
 	
+	@Test
+	public void TC_04_Radio_button() {
+		driver.get("https://material.angular.io/components/radio/examples");
+		
+
+		By winterRadioInput = By.xpath("//input[@value='Winter']");
+		jsEx.executeScript("arguments[0].click();", driver.findElement(winterRadioInput));
+		sleepInSecond(2);
+		Assert.assertTrue(driver.findElement(winterRadioInput).isSelected());
+	}
+	
+	
+	@Test
+	public void TC_05_checkBox() {
+		driver.get("https://material.angular.io/components/checkbox/examples");
+		
+		By checkedBox = By.xpath("//label[text()='Checked']/preceding-sibling::div[@class='mdc-checkbox']//input");
+		By indeterminateBox = By.xpath("//label[text()='Indeterminate']/preceding-sibling::div[@class='mdc-checkbox']//input");
+
+		checkToCheckboxByJS(checkedBox);
+		Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Checked']/preceding-sibling::div[@class='mdc-checkbox']//input")).isSelected());
+		sleepInSecond(1);
+
+		checkToCheckboxByJS(indeterminateBox);
+		sleepInSecond(2);
+		Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Indeterminate']/preceding-sibling::div[@class='mdc-checkbox']//input")).isSelected());
+
+		uncheckToCheckboxByJS(checkedBox);
+		uncheckToCheckboxByJS(indeterminateBox);
+		
+		sleepInSecond(2);
+		Assert.assertFalse(driver.findElement(checkedBox).isSelected());
+		Assert.assertFalse(driver.findElement(indeterminateBox).isSelected());
+			
+	}
+	
+	@Test
+	public void TC_06_Radio_checkBox_GoogleDocs() {
+		driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
+		By canTho = By.xpath("//div[@aria-label=\"Cần Thơ\" and @aria-checked='false']");
+		Assert.assertTrue(driver.findElement(canTho).isDisplayed());
+
+		By canThochecked = By.xpath("//div[@aria-label=\"Cần Thơ\" and @aria-checked='true']");
+		checkToCheckbox(canTho);
+		sleepInSecond(1);
+		Assert.assertTrue(driver.findElement(canThochecked).isDisplayed());
+		
+		//Click all checkboxes
+		List<WebElement> checkboxes = driver.findElements(By.xpath("//div[@role='checkbox']"));
+		for (WebElement checkbox : checkboxes) {
+			checkbox.click();
+			sleepInSecond(1);
+			
+		}
+		//Verify all checkboxes are checked
+		for (WebElement checkbox : checkboxes) {
+			Assert.assertEquals(checkbox.getAttribute("aria-checked"),"true");
+			
+		}
+		
+	}
+	
+	public void checkToCheckboxByJS(By by) {
+		if(!driver.findElement(by).isSelected()) {
+			jsEx.executeScript("arguments[0].click();", driver.findElement(by));
+		}
+	}
+	public void uncheckToCheckboxByJS(By by) {
+		if(driver.findElement(by).isSelected()) {
+			jsEx.executeScript("arguments[0].click();", driver.findElement(by));
+		}
+	}
 	public void checkToCheckbox(By by) {
 		if(!driver.findElement(by).isSelected()) {
 			driver.findElement(by).click();
@@ -136,6 +212,10 @@ public class Topic_09_Button_Radio_Checkbox {
 	public void afterClass() {
 		driver.quit();
 	}
+	
+	
+
+	
 	
 	public int generateEmail() {
 		Random rand = new Random();
