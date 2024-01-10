@@ -47,7 +47,7 @@ public class Topic_07_Default_dropdown {
 
 	}
 
-	//@Test
+	@Test
 	public void TC_01_Nopcommerce() {
 		driver.get("https://demo.nopcommerce.com/");
 
