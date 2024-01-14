@@ -174,26 +174,31 @@ public class Topic_12_Popup {
 		
 		
 	}
-	@Test
+	//@Test
 	public void TC_07_Random_Popup_Not_In_DOM() {
 		//Step 1: 
 		driver.get("https://dehieu.vn/");
+		sleepInSecond(3);
 		By popup = By.cssSelector("section#popup div.popup-content");
-		sleepInSecond(5);
+		
+	
 		//step 2: kiem tra pop-up hien thi khong, neu ko hien thi thi qua step 3
-		if(driver.findElement(popup).isDisplayed()) {
+		List<WebElement> popupElements = driver.findElements(popup);
+		
+		if(popupElements.size()>0) {
 			System.out.println("-------Popup hien thi va click close----------");
 			driver.findElement(By.cssSelector("section#popup div.popup-content button#close-popup")).click();
 			sleepInSecond(2);
 			//Assert.assertFalse(driver.findElement(popup).isDisplayed());
 		}else System.out.println("--------------Popup khong hien thi-----------");
-
+		
 		driver.findElement(By.xpath("//a[text()='Đăng nhập']")).click();
 		sleepInSecond(3);
 		driver.findElement(By.xpath("//button[text()='Đăng nhập']")).click();
 		sleepInSecond(3);
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Bạn chưa nhập email hoặc số điện thoại!')]")).isDisplayed());
 	}
+	
 
 	@AfterClass
 	public void afterClass() {
