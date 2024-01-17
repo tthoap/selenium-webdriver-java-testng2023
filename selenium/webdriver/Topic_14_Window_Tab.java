@@ -133,7 +133,7 @@ public class Topic_14_Window_Tab {
 		closeAllWindowWithoutParent(parentPageID);
 	}
 
-	//@Test
+	// @Test
 	public void TC_04_Techpanda() {
 		// Step 1- truy cập trang
 		driver.get("http://live.techpanda.org/");
@@ -199,20 +199,26 @@ public class Topic_14_Window_Tab {
 		// Step 2- Click vào đăng nhập
 		driver.findElement(By.xpath("//span[text()='Đăng ký']/parent::span/preceding-sibling::span//span")).click();
 
-		//switch qua new window
+		// switch qua new window
 		switchToWindowByPageTitle("Login");
 		sleepInSecond(10);
 		driver.manage().window().maximize();
 		driver.findElement(By.xpath("//input[@value='Login']")).click();
-		Assert.assertEquals(driver.findElement(By.xpath("//input[@name='username']/following-sibling::span[@role='alert']")).getText(), "This field is required");
-		Assert.assertEquals(driver.findElement(By.xpath("//input[@name='password']/following-sibling::span[@role='alert']")).getText(), "This field is required");
-		
+		Assert.assertEquals(driver
+				.findElement(By.xpath("//input[@name='username']/following-sibling::span[@role='alert']")).getText(),
+				"This field is required");
+		Assert.assertEquals(driver
+				.findElement(By.xpath("//input[@name='password']/following-sibling::span[@role='alert']")).getText(),
+				"This field is required");
+
 		closeAllWindowWithoutParent(parentPageID);
 		switchToWindowByPageTitle(parentPageID);
-		
+
 		driver.findElement(By.cssSelector("input#searchword")).sendKeys("automation");
 		driver.findElement(By.cssSelector("button.cdo-search-button")).click();
-		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='cald4-1']/following-sibling::div[@class='pos-header dpos-h']//span[text()='automation']")).getText(), "automation");
+		Assert.assertEquals(driver.findElement(By.xpath(
+				"//div[@id='cald4-1']/following-sibling::div[@class='pos-header dpos-h']//span[text()='automation']"))
+				.getText(), "automation");
 
 	}
 
