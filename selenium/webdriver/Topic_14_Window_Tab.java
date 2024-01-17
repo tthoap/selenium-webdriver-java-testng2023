@@ -111,18 +111,31 @@ public class Topic_14_Window_Tab {
 
 	}
 
-	// @Test
+	//@Test
 	public void TC_03_Kyna() {
 		driver.get("https://skills.kynaenglish.vn/");
 
 		String parentPageID = driver.getWindowHandle();
 
-		// click vào facebook link bên dưới
-		// driver.findElement(By.xpath("//div[@class='hotline']//img[@alt='facebook']")).click();
-		// switchToWindowByPageTitle("");
-		// Assert.assertEquals(driver.findElement(By.cssSelector("h1#seo_h1_tag
-		// span")).getText(), "Kyna.vn");
+		
+		  // click vào facebook link bên dưới 
+		  driver.findElement(By.xpath("//div[@class='hotline']//img[@alt='facebook']")).click(); 
+		  switchToWindowByPageTitle("Kyna.vn | Ho Chi Minh City | Facebook"); 
+		 
+		  By popup = By.xpath("//form[@id='login_popup_cta_form']/parent::div");
+			List<WebElement> popuphienthi = driver.findElements(popup);
 
+			if (popuphienthi.size() > 0) {
+				System.out.println("-----------Popup hien thi-------------");
+				driver.findElement(By.xpath("//div[@aria-label='Close']")).click();
+				sleepInSecond(2);
+
+				Assert.assertEquals(driver.findElements(popup).size(), 0);
+			} else
+				System.out.println("--pop-up khong hien thi--");
+			
+		  Assert.assertEquals(driver.findElement(By.xpath("//h1[text()='Kyna.vn']")).getText(),"Kyna.vn ");
+		 
 		// Back về parent page rồi click youtube link
 		switchToWindowByPageTitle("Kyna.vn - Học online cùng chuyên gia");
 		driver.findElement(By.xpath("//div[@class='hotline']//img[@alt='youtube']")).click();
@@ -133,7 +146,7 @@ public class Topic_14_Window_Tab {
 		closeAllWindowWithoutParent(parentPageID);
 	}
 
-	// @Test
+	//@Test
 	public void TC_04_Techpanda() {
 		// Step 1- truy cập trang
 		driver.get("http://live.techpanda.org/");
