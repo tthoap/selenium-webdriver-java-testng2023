@@ -30,14 +30,14 @@ public class Topic_17_Wait_Part_III_Implicit {
 	}
 
 	@Test
-	public void TC_01_Timeout_Less_Than_Element_Display() {
+	public void TC_01_Timeout_Less_Than_Element_Display_Fail() {
 		driver.get("https://automationfc.github.io/dynamic-loading/");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		
 		driver.findElement(By.cssSelector("div#start>button")).click();
 		
 		//After click - Takes 5s to display Hellow Word
-		//Assert.assertFalse(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
+		Assert.assertFalse(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
 		//driver.findElement(By.cssSelector("div#finish>h4")).getText();
 	}
 

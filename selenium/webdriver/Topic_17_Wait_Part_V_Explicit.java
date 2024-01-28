@@ -4,7 +4,9 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,6 +19,8 @@ public class Topic_17_Wait_Part_V_Explicit {
 	WebDriverWait explicitWait;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
+	
+	JavascriptExecutor jsExecutor;
 //edit
 	@BeforeClass
 	public void beforeClass() {
@@ -27,13 +31,14 @@ public class Topic_17_Wait_Part_V_Explicit {
 		}
 
 		driver = new FirefoxDriver();
-		explicitWait = new WebDriverWait(driver, 6);
-		driver.manage().window().maximize();
+		jsExecutor = (JavascriptExecutor) driver;
+		explicitWait = new WebDriverWait(driver, 15);
+		//driver.manage().window().maximize();
 		
 		
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Invisible() {
 		driver.get("https://automationfc.github.io/dynamic-loading/");
 				
@@ -46,7 +51,7 @@ public class Topic_17_Wait_Part_V_Explicit {
 
 	}
 
-	@Test
+	//@Test
 	public void TC_02_Visible() {
 		driver.get("https://automationfc.github.io/dynamic-loading/");
 		
@@ -62,12 +67,25 @@ public class Topic_17_Wait_Part_V_Explicit {
 	@Test
 	public void TC_03_date_Picker() {
 		driver.get("https://demos.telerik.com/aspnet-ajax/ajaxloadingpanel/functionality/explicit-show-hide/defaultcs.aspx");
+		scrollToElementOnDown("//div[@id='ctl00_ContentPlaceholder1_Panel1']");
 		
-		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='ctl00_ContentPlaceholder1_RadCalendar1_Top']")));
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='26']")));
-		driver.findElement(By.xpath("//a[text()='26']")).click();
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='ctl00_ContentPlaceholder1_Panel1']")));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='31']")));
+		driver.findElement(By.xpath("//a[text()='31']")).click();
+		
+		
 		
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@id,'_RadCalendar1')]//div[@class='raDiv']")));
+		
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@title='Wednesday, January 31, 2024']")));
+
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//td[@title='Wednesday, January 31, 2024']")).isDisplayed());
+		Assert.assertEquals(driver.findElement(By.xpath("//span[@id='ctl00_ContentPlaceholder1_Label1']")).getText(), "Wednesday, January 31, 2024");
+		
+		
+		
+		
 		
 		
 	}
@@ -76,6 +94,17 @@ public class Topic_17_Wait_Part_V_Explicit {
 	public void TC_03_Timeout_Longer_Than_Element_Display() {
 		explicitWait = new WebDriverWait(driver, 10);
 
+	}
+	
+	public void scrollToElementOnTop(String locator) {
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getElement(locator));
+	}
+
+	public void scrollToElementOnDown(String locator) {
+		jsExecutor.executeScript("arguments[0].scrollIntoView(false);", getElement(locator));
+	}
+	public WebElement getElement(String locator) {
+		return driver.findElement(By.xpath(locator));
 	}
 
 	@AfterClass

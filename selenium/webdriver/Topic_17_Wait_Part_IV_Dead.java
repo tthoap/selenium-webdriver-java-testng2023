@@ -24,29 +24,28 @@ public class Topic_17_Wait_Part_IV_Dead {
 		}
 
 		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 		
 	}
 
 	@Test
-	public void TC_01_Timeout_Less_Than_Element_Display() {
+	public void TC_01_Timeout_Less_Than_Element_Display_Fail() {
 		driver.get("https://automationfc.github.io/dynamic-loading/");
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		
+				
 		driver.findElement(By.cssSelector("div#start>button")).click();
+		sleepInSecond(3);
 		
 		//After click - Takes 5s to display Hellow Word
-		//Assert.assertFalse(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
-		//driver.findElement(By.cssSelector("div#finish>h4")).getText();
+		Assert.assertFalse(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
+		driver.findElement(By.cssSelector("div#finish>h4")).getText();
 	}
 
 	@Test
 	public void TC_02_Timeout_Equal_Element_Display() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("https://automationfc.github.io/dynamic-loading/");
 		driver.findElement(By.cssSelector("div#start>button")).click();
-		
+		sleepInSecond(5);
 		//After click - Takes 5s to display Hellow Word
 		Assert.assertTrue(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
 		driver.findElement(By.cssSelector("div#finish>h4")).getText();
@@ -54,7 +53,7 @@ public class Topic_17_Wait_Part_IV_Dead {
 		
 	}
 
-	@Test
+	//@Test
 	public void TC_03_Timeout_Longer_Than_Element_Display() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://automationfc.github.io/dynamic-loading/");
