@@ -113,6 +113,7 @@ public class Topic_12_Popup {
 			Assert.assertEquals(driver.findElements(popup).size(), 0);
 		} else System.out.println("--pop-up khong hien thi--");
 		
+		
 	}
 	
 	//@Test

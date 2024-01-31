@@ -88,11 +88,7 @@ public class Topic_17_Wait_Part_V_Explicit {
 
 	}
 
-	// @Test
-	public void TC_03_Timeout_Longer_Than_Element_Display() {
-		explicitWait = new WebDriverWait(driver, 10);
 
-	}
 
 	public void scrollToElementOnTop(String locator) {
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getElement(locator));

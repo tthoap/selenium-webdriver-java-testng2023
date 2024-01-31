@@ -44,7 +44,7 @@ public class Topic_11_User_Interaction_Part_I {
 		}else key = Keys.COMMAND;
 	}
 
-	//@Test
+	@Test
 	public void TC_01_Hover() {
 		driver.get("https://automationfc.github.io/jquery-tooltip/");
 		
@@ -53,7 +53,7 @@ public class Topic_11_User_Interaction_Part_I {
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='ui-tooltip-content' and text()='We ask for your age only for statistical purposes.']")).isDisplayed());
 		
 	}
-	//@Test
+	@Test
 	public void TC_01_Hover_Menu() {
 		driver.get("https://yody.vn/");
 		
@@ -92,7 +92,7 @@ public class Topic_11_User_Interaction_Part_I {
 
 	}
 
-	@Test
+	//@Test
 	public void TC_04_Double_Click() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		
