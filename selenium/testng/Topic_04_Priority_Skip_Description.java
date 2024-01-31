@@ -8,7 +8,7 @@ public class Topic_04_Priority_Skip_Description {
 
 	
 
-	@Test(priority = 1, description= "JIRA#1234 - Create new user verify success")
+	@Test(priority = 5, description= "JIRA#1234 - Create new user verify success")
 	public void User_01_Create_New_User() {
 		System.out.println("Run TC 01");
 	}
@@ -28,7 +28,7 @@ public class Topic_04_Priority_Skip_Description {
 		System.out.println("Run TC 04");
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 1)
 	public void User_05_Delete_User() {
 		System.out.println("Run TC 05");
 	}

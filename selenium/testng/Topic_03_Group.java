@@ -2,12 +2,30 @@ package testng;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
 public class Topic_03_Group {
-
-	@BeforeClass
+	WebDriver driver;
+	String projectPath = System.getProperty("user.dir");
+	String osName = System.getProperty("os.name");
+	
+	@BeforeClass(alwaysRun = true)
 	public void beforeClass() {
+		if (osName.contains("Windows")) {
+			System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		} else {
+			System.setProperty("webdriver.gecko.driver", projectPath + "/browserDrivers/geckodriver");
+		}
+
+		driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Assert.assertTrue(false);
 	}
 
 	@Test(groups = "user")
@@ -36,8 +54,9 @@ public class Topic_03_Group {
 	}
 
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void afterClass() {
+		driver.quit();
 	}
 
 }
