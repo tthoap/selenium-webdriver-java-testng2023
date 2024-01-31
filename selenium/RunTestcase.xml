@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Suite">
+
+  <test name="Run on Firefox">
+
+    <classes>
+      <class name="testng.Topic_01_Annotation"/>
+      <class name="testng.Topic_02_Assertion"/>
+      <class name="testng.Topic_03_Group"/>
+      <class name="testng.Topic_04_Priority_Skip_Description"/>
+     
+    </classes>
+
+  </test> <!-- Test -->
+
+</suite> <!-- Suite -->
